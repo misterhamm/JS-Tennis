@@ -4,8 +4,8 @@ var canvasContext;
 
 var canvasColor = '#5e871f';
 var ballColor = 'white';
-var paddle1Color = '#dc6c20';
-var paddle2Color = 'yellow';
+var paddle1Color = '#C9F227';
+var paddle2Color = '#00F8FB';
 
 var paddleSound = new Audio('sounds/bounce.mp3');
 var bgMusic = new Audio('sounds/music.mp3');
