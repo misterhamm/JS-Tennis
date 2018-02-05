@@ -7,12 +7,12 @@ var ballColor = 'white';
 var paddle1Color = '#dc6c20';
 var paddle2Color = 'yellow';
 
-var paddleSound = new Audio('bounce.mp3');
-var bgMusic = new Audio('music.mp3');
-var playerScoreSound = new Audio('score.mp3');
-var computerScoreSound = new Audio('computer-score.mp3');
-var winMusic = new Audio('win.mp3');
-var loseMusic = new Audio('fail.mp3');
+var paddleSound = new Audio('../sounds/bounce.mp3');
+var bgMusic = new Audio('../sounds/music.mp3');
+var playerScoreSound = new Audio('../sounds/score.mp3');
+var computerScoreSound = new Audio('../sounds/computer-score.mp3');
+var winMusic = new Audio('../sounds/win.mp3');
+var loseMusic = new Audio('../sounds/fail.mp3');
 var winMusicHasPlayed = false;
 var loseMusicHasPlayed = false;
 
