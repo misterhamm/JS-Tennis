@@ -1,6 +1,7 @@
 // Set Global Variables - Do not change these
 var canvas;
 var canvasContext;
+var optionSubmit;
 var winMusicHasPlayed = false;
 var loseMusicHasPlayed = false;
 var player1Score = 0;
@@ -17,6 +18,7 @@ var ballColor = 'white';
 var paddle1Color = '#C9F227';
 var paddle2Color = '#00F8FB';
 var netColor = 'white';
+var textColor = 'white';
 
 // Sound Variables
 /*
@@ -69,8 +71,7 @@ var paddle2Y = 200; // Paddle's starting Y position
 // Functions
 
 // Restart everything when you click the Play Again button
-function handleMouseClick(evt) {
-  if(showingWinScreen) {
+function resetGame(evt) {
     player1Score=0;
     player2Score=0;
     showingWinScreen = false;
@@ -82,32 +83,49 @@ function handleMouseClick(evt) {
       this.play();
     }, false);
     bgMusic.play();
+}
+
+function checkGameOver() {
+  if (showingWinScreen) {
+    resetGame();
   }
+}
+
+// Set up options
+ function checkOptions() {
+  ballSize = document.getElementById('ballSize').value;
+  //resetGame();
 }
 
 // Run functions after the window has loaded
 window.onload = function() {
 
-  // Get the canvas element
-  canvas = document.getElementById('gameCanvas');
-  canvasContext = canvas.getContext('2d');
-  
+  function gameStart() {
   // Set the FPS, initialize movement and drawing
   setInterval(function() {
     moveEverything();
     drawEverything();
-  }, 1000/FPS);
+  }, 1000/FPS);  
+}
+  // Get the canvas element
+  canvas = document.getElementById('gameCanvas');
+  canvasContext = canvas.getContext('2d');
 
-
+  optionSubmit = document.getElementById('optionSubmit');
   // Start music
   bgMusic.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
   }, false);
   bgMusic.play();
+  // Restart the game when you click "play again"
+  canvas.addEventListener('mousedown', checkGameOver);
 
-  // Restart the game when you click
-  canvas.addEventListener('mousedown', handleMouseClick);
+  // Restart the game when you click the option submit
+  optionSubmit.addEventListener('mousedown', function(){
+    checkOptions();
+    gameStart();
+  });
 
   // Make the player paddle follow the mouse
   canvas.addEventListener('mousemove', function(evt){
@@ -115,8 +133,8 @@ window.onload = function() {
     paddle1Y = mousePos.y - (PADDLE_HEIGHT/2);
 
   });
-}
-
+  
+};
 // Handle computer AI
 function computerMovement() {
   var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2);
@@ -248,6 +266,7 @@ function drawEverything() {
   // Draw ball
   drawBall(ballX, ballY, ballSize, ballColor);
 
+  canvasContext.fillStyle = textColor;
   canvasContext.font = "50px Arial";
   canvasContext.fillText(player1Score,200,100);
   canvasContext.fillText(player2Score,canvas.width-200,100);
