@@ -56,10 +56,10 @@ var ballX = 50; // Ball's starting X position
 var ballY = 50; // Ball's starting Y position
 var ballSpeedX = 10; // Ball's speed along the X axis
 var ballSpeedY = 4; // Ball's speed along the Y axis
-var ballSize = 100; // Ball's diameter in pixels
+var ballSize = 10; // Ball's diameter in pixels
 
 // Paddle Variables
-const PADDLE_WIDTH = 10;
+const PADDLE_WIDTH = 100;
 const PADDLE_HEIGHT = 100;
 const PADDLE_SPACE_FROM_SIDE = 15;
 var paddle1Y = 200; // Paddle's starting Y position
